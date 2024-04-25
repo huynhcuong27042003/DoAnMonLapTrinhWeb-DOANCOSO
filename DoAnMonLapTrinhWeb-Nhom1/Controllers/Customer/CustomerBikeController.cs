@@ -119,8 +119,6 @@ namespace DoAnMonLapTrinhWeb_Nhom1.Controllers.Customer
             {
                 LoaiXes.Add(new SelectListItem { Value = item.MaLoai.ToString(), Text = item.TenLoai });
             }
-            
-
             ViewBag.MaDiaDiem = DiaDiems;
             ViewBag.MaHangXe = HangXes;
             ViewBag.MaLoai = LoaiXes;
@@ -157,9 +155,8 @@ namespace DoAnMonLapTrinhWeb_Nhom1.Controllers.Customer
                     xe.HinhAnh4 = "/Images/bike/default.jpg";
                     _context.Xes.Add(xe);
                     await _context.SaveChangesAsync();
-
-                    return RedirectToAction("Index", "CustomerBike"); // Chuyển hướng đến trang chính sau khi thêm thành công
-                    
+                    TempData["SuccessMessage"] = "Đăng xe thành công đang chờ nhân viên xét duyệt";
+                    return RedirectToAction("Index", "CustomerBike"); // Chuyển hướng đến trang chính sau khi thêm thành công                   
                 }
             }
             // Trả về view với model nếu có lỗi
@@ -294,7 +291,7 @@ namespace DoAnMonLapTrinhWeb_Nhom1.Controllers.Customer
 			{
 				string subject = "ĐẶT XE THÀNH CÔNG";
 				string thanhtoantoken = Guid.NewGuid().ToString();
-				var cacheOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromDays(1));
+				var cacheOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromHours(1));
 				string combinedData = $"{existingUser.Email}|{bienSoXe}";
 				_cache.Set(thanhtoantoken, combinedData, cacheOptions);
 
@@ -320,7 +317,6 @@ namespace DoAnMonLapTrinhWeb_Nhom1.Controllers.Customer
                 datXe = yeuCauDatXe,
                 XeList= xelist,
             };
-
             // Chuyển hướng về view CheckOrder để kiểm tra kết quả đã được cập nhật chưa
             return View("Index", viewmodel);
         }

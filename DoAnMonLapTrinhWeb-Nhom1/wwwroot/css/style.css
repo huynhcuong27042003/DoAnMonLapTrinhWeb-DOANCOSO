@@ -246,7 +246,7 @@ border-bottom: 8px solid #6f6f6f;
     border-right: 1px solid #d8dae5;
     height: 24px;
     position: absolute;
-    right: -7px;
+    right: -24px;
 }
 li.header-nav-container-item--hasNotify:hover .notify-order{
     display:block;
@@ -582,7 +582,7 @@ a.order__check-link {
     margin-right: 1%;
 }
 
-.slide img {
+.slide .slide__img {
     width: 100%; /* Hình ảnh sẽ chiếm toàn bộ chiều rộng của div */
     height: auto; /* Chiều cao tự động điều chỉnh theo tỉ lệ của hình ảnh */
     border-radius: 15px;
@@ -930,7 +930,6 @@ a.order__check-link {
 .alert {
     position: relative;
     padding: 1rem 1.25rem;
-    margin-bottom: 1rem;
     border: 1px solid transparent;
     border-radius: .25rem;
 }
@@ -952,3 +951,10 @@ a.order__check-link {
         .alert-danger .alert-link:hover {
             color: #491217;
         }
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+

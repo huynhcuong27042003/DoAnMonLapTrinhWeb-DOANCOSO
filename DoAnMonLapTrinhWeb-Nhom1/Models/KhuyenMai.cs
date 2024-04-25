@@ -11,6 +11,8 @@ public partial class KhuyenMai
 
     public string NoiDungKhuyenMai { get; set; } = null!;
 
+    public string HinhAnhKhuyenMai { get; set; } = null!;
+
     public DateTime NgayKhuyenMai { get; set; }
 
     public double PhanTramKhhuyenMai { get; set; }

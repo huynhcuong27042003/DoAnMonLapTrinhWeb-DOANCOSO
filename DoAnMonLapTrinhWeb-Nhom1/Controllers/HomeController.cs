@@ -31,7 +31,7 @@ namespace DoAnMonLapTrinhWeb_Nhom1.Controllers
 
 		public async Task<IActionResult> Index(int? page)
         {
-            int pageSize = 4;
+            int pageSize = 8;
             if (page == null) page = 1;
 			int pageNumber = page ?? 1;
 			DateTime Ngaynhan = DateTime.Now;
@@ -72,16 +72,17 @@ namespace DoAnMonLapTrinhWeb_Nhom1.Controllers
                 var existingUser = await _context.TaiKhoans.FirstOrDefaultAsync(u => u.Email == model.Register.Email);
                 if (existingUser != null)
                 {
-                    ViewBag.ErrorMessage = "Tên đăng nhập đã tồn tại.";
+                    TempData["ErrorMessage"] = "Tên đăng nhập đã tồn tại.";
                     return RedirectToAction("Index", "Home");
                 }
                 model.Register.MatKhau = BCrypt.Net.BCrypt.HashPassword(model.Register.MatKhau);
                 model.Register.IdchucVu = 2;
                 _context.TaiKhoans.Add(model.Register);
                 await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Đăng ký thành công";
                 return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction("Index", "Home");
+            return View(viewModel);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -106,11 +107,12 @@ namespace DoAnMonLapTrinhWeb_Nhom1.Controllers
                     {
                     };
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+                    TempData["SuccessMessage"] = "Đăng nhập thành công";
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    ViewBag.ErrorMessage = "Tên đăng nhập hoặc mật khẩu không đúng.";
+                    TempData["ErrorMessage"] = "Tên đăng nhập hoặc mật khẩu không đúng.";
                     return RedirectToAction("Index", "Home");
                 }
             }
@@ -136,9 +138,12 @@ namespace DoAnMonLapTrinhWeb_Nhom1.Controllers
             
             return PartialView();
         }
-        public IActionResult NoSee() {
-            return View();
+
+        public async Task<IActionResult> Promo()
+        {
+            return PartialView();
         }
+
 		public void SendMail(string to, string subject, string content)
 		{
 			var from = _configuration["SMTPConfig:SenderAddress"];

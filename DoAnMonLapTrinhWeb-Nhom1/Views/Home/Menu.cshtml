@@ -122,12 +122,6 @@
 			<p class="login__header-title">Đăng Nhập</p>
 		</header>
 		<div class="modal__body">
-			@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
-			{
-				<div class="alert alert-danger" role="alert">
-					@ViewBag.ErrorMessage
-				</div>
-			}
 			<form class="form form-horizontal" asp-action="Login" asp-controller="Home" method="POST">
 				<div class="form-group">
 					<label asp-for="Register.Email" class="col-md-3 control-label modal__lable"></label>
@@ -159,12 +153,6 @@
 			<p class="signup__header-title">Đăng ký</p>
 		</header>
 		<div class="modal__body">
-			@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
-			{
-				<div class="alert alert-danger" role="alert">
-					@ViewBag.ErrorMessage
-				</div>
-			}
 			<form class="form form-horizontal" asp-action="Register" asp-controller="Home" method="POST">
 				<div class="form-group">
 					<label asp-for="Register.Email" class="col-md-3 control-label modal__label"></label>

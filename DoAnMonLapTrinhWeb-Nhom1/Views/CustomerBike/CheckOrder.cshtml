@@ -4,72 +4,45 @@
     ViewData["Title"] = "CheckOrder";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="content">
+    <h1>Yêu cầu đặt xe</h1>
+</div>
 
-<h1>CheckOrder</h1>
-
-<table class="table">
-    <thead>
-        <tr>
-            @*  @if (TempData.ContainsKey("SuccessMessage"))
-            {
-            <div class="alert alert-success" role="alert">
-            @TempData["SuccessMessage"]
+<div class="content">
+    <div class="modal__container js-modal-container">
+        <div style="padding:32px" class="modal__body-infor">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label modal__lable">Biển số xe</label>
+                <input style="outline:none" readonly asp-for="datXe.BienSoXe" class="form-control modal__input" />
             </div>
-            }
-            @if (TempData.ContainsKey("ErrorMessage"))
-            {
-            <div class="alert alert-danger" role="alert">
-            @TempData["ErrorMessage"]
+            <div class="form-group">
+                <label class="control-label modal__lable">Tên xe</label>
+                <input style="outline:none" readonly asp-for="datXe.BienSoXeNavigation.TenXe" class="form-control modal__input" />
             </div>
-            } *@
-            <th>
-                @Html.DisplayNameFor(model => model.datXe.BienSoXe)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.datXe.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.datXe.NgayNhan)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.datXe.NgayTra)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.datXe.SoNgayThue)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.datXe.TrangThaiChapNhan)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                @Html.DisplayFor(model => model.datXe.BienSoXe)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.datXe.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.datXe.NgayNhan)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.datXe.NgayTra)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.datXe.SoNgayThue)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.datXe.TrangThaiChapNhan)
-            </td>
-            <td>
-                <a class="btn__function" asp-action="Accept" asp-route-biensoxe="@Model.datXe.BienSoXe" asp-route-email="@Model.datXe.Email">Accept</a> |
-                <a class="btn__function" asp-action="Deny" asp-route-biensoxe="@Model.datXe.BienSoXe" asp-route-email="@Model.datXe.Email">Deny</a>
-            </td>
-        </tr>
-    </tbody>
-    <a asp-action="Index">Back to List</a>
-</table>
+            <div class="form-group">
+                <label class="control-label modal__lable">Email thuê</label>
+                <input style="outline:none" readonly asp-for="datXe.Email" class="form-control modal__input" />
+            </div>
+            <div class="form-group">
+                <label class="control-label modal__lable">Ngày nhận</label>
+                <input style="outline:none" readonly asp-for="datXe.NgayNhan" class="form-control modal__input" />
+            </div>
+            <div class="form-group">
+                <label class="control-label modal__lable">Ngày trả</label>
+                <input style="outline:none" readonly asp-for="datXe.NgayTra" class="form-control modal__input" />
+            </div>
+            <div class="form-group">
+                <label class="control-label modal__lable">Số ngày thuê</label>
+                <input style="outline:none" readonly asp-for="datXe.SoNgayThue" class="form-control modal__input" />
+            </div>
+            <div>
+                <a class="btn__function" asp-action="Accept" asp-route-biensoxe="@Model.datXe.BienSoXe" asp-route-email="@Model.datXe.Email">Chấp nhận</a> |
+                <a class="btn__function" asp-action="Deny" asp-route-biensoxe="@Model.datXe.BienSoXe" asp-route-email="@Model.datXe.Email">Từ chối</a>
+            </div>
+        </div>
 
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
 

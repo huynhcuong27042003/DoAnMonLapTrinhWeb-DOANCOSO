@@ -68,29 +68,54 @@ namespace DoAnMonLapTrinhWeb_Nhom1.Controllers.Customer
                 if (User.Identity.IsAuthenticated)
                 {
                     string username = User.Identity.Name;
+                    users = await _context.TaiKhoans.FirstOrDefaultAsync(m => m.Email == username);
                     if (username != null)
                     {
-                        userViewModel.datXe.BienSoXe = bienSoXe;
-                        users = await _context.TaiKhoans.FirstOrDefaultAsync(m => m.Email == username);
-                        userViewModel.datXe.Email = users.Email;
-                        // Tính số ngày thuê
-                        DateTime ngayTra = userViewModel.datXe.NgayTra;
-                        DateTime ngayNhan = userViewModel.datXe.NgayNhan;
-                        TimeSpan thoiGianThue = ngayTra.Subtract(ngayNhan);
-                        int soNgayThue = thoiGianThue.Days;
+                        var existingRequests = await _context.YeuCauDatXes
+                        .Where(x => x.BienSoXe == bienSoXe)
+                        .ToListAsync();
+                        var xe = await _context.Xes.FirstOrDefaultAsync(x => x.BienSoXe == bienSoXe);
+                        if (xe != null)
+                        {
+                            // Kiểm tra xem người dùng có đang cố gắng đặt xe của bản thân hay không
+                            if (xe.Email == users.Email)
+                            {
+                                TempData["ErrorMessage"] = "Không thể đặt xe của bản thân!";
+                                return RedirectToAction("Index", "Home");
+                            }
+                            foreach (var request in existingRequests)
+                            {
+                                // Kiểm tra xem thời gian nhận xe của yêu cầu đặt xe mới có nằm trong khoảng thời gian của các yêu cầu đặt xe khác không
+                                if (userViewModel.datXe.NgayNhan >= request.NgayNhan && userViewModel.datXe.NgayNhan <= request.NgayTra)
+                                {
+                                    // Nếu thời gian nhận xe nằm trong khoảng thời gian của một yêu cầu đặt xe khác, hiển thị thông báo lỗi và không lưu yêu cầu mới
+                                    TempData["ErrorMessage"] = "Xe này đã có người đặt!";
+                                    return RedirectToAction("Index", "Home");
+                                }
+                            }
+                            userViewModel.datXe.BienSoXe = bienSoXe;
 
-                        // Lưu số ngày thuê vào đối tượng
-                        userViewModel.datXe.SoNgayThue = soNgayThue;
+                            userViewModel.datXe.Email = users.Email;
+                            // Tính số ngày thuê
+                            DateTime ngayTra = userViewModel.datXe.NgayTra;
+                            DateTime ngayNhan = userViewModel.datXe.NgayNhan;
+                            TimeSpan thoiGianThue = ngayTra.Subtract(ngayNhan);
+                            int soNgayThue = thoiGianThue.Days;
 
-                        // Lưu yêu cầu đặt xe vào cơ sở dữ liệu
-                        _context.YeuCauDatXes.Add(userViewModel.datXe);
-                        await _context.SaveChangesAsync();
-                        TempData["SuccessMessage"] = "Order thành công!";
-                        return RedirectToAction("Index", "Home");
+                            // Lưu số ngày thuê vào đối tượng
+                            userViewModel.datXe.SoNgayThue = soNgayThue;
+
+                            // Lưu yêu cầu đặt xe vào cơ sở dữ liệu
+                            _context.YeuCauDatXes.Add(userViewModel.datXe);
+                            await _context.SaveChangesAsync();
+                            TempData["SuccessMessage"] = "Đặt xe thành công hãy chờ chủ xe xét duyệt!";
+                            return RedirectToAction("Index", "Home");
+
+                        }                    
                     }
                 }
                 // Gán giá trị Email cho đối tượng yeucaudatxe
-                TempData["ErrorMessage"] = "Order thất bại!";
+                TempData["ErrorMessage"] = "Đặt xe thất bại!";
                 return View();
             }
         }

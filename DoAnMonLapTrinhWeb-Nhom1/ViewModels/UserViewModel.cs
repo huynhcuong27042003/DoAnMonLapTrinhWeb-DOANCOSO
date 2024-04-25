@@ -31,6 +31,8 @@ namespace DoAnMonLapTrinhWeb_Nhom1.ViewModels
 
         public string AvatarUrl { get; set; }
 
+        public List<KhuyenMai> KhuyenMaiList { get; set; }
+
         // Phương thức để lấy URL của avatar từ đối tượng TaiKhoan
         
         public int TongNgayThue()

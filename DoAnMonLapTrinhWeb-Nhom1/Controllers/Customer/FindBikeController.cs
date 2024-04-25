@@ -23,7 +23,12 @@ namespace DoAnMonLapTrinhWeb_Nhom1.Controllers.Customer
 			{
 				DiaDiems.Add(new SelectListItem { Value = item.MaDiaDiem.ToString(), Text = item.TenDiaDiem });
 			}
-			string username = User.Identity.Name;
+            List<SelectListItem> Xes = new List<SelectListItem>();
+            foreach (var item in _context.Xes)
+            {
+                Xes.Add(new SelectListItem { Value = item.BienSoXe.ToString(), Text = item.TenXe });
+            }
+            string username = User.Identity.Name;
             var datxeList = await _context.YeuCauDatXes.Where(p => p.BienSoXeNavigation.Email == username && 
                                                             p.TrangThaiChapNhan == false).ToListAsync();
             var xeList = await _context.Xes.Where(p => p.MaDiaDiem == userViewModel.DiaDiem.MaDiaDiem &&

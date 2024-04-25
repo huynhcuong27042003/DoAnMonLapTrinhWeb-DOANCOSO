@@ -61,10 +61,11 @@
 					<input style="outline:none" readonly asp-for="Xe.MoTa" class="form-control modal__input" />
 				</div>
 			</form>
+			<div>
+				<a class="btn__function" asp-action="Update" asp-route-biensoxe="@Model.Xe.BienSoXe">Cập nhật xe</a> |
+				<a class="btn__function" asp-action="Index">Quay lại</a>
+			</div>
 		</div>
-		<div>
-			<a class="btn__function" asp-action="Update" asp-route-biensoxe="@Model.Xe.BienSoXe">Edit</a> |
-			<a class="btn__function" asp-action="Index">Back to List</a>
-		</div>
+		
 	</div>
 </div>

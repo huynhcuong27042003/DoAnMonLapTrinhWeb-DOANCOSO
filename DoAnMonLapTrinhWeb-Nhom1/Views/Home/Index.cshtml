@@ -6,21 +6,7 @@
  @model DoAnMonLapTrinhWeb_Nhom1.ViewModels.UserViewModel
 @using X.PagedList.Mvc.Core
 @await Html.PartialAsync("Find")
-<div class="promo-section">
-    <div class="container">
-        <h1>Chương Trình Khuyến Mãi</h1>
-        <h5 class="title">Nhận nhiều ưu đãi hấp dẫn từ N1Bikerent</h5>
-        <div class="slide-container">
-            <div class="slides">
-                <div class="slide">
-                    <img src="https://n1-cstg.mioto.vn/g/2024/02/21/15/IT55BVC8.jpg" alt="Slide 1">
-                </div>
-            </div>
-            <button class="button prev"><span class="triangle-left"></span></button>
-            <button class="button next"><span class="triangle-right"></span></button>
-        </div>
-    </div>
-</div>
+@await Html.PartialAsync("Promo")
 
 <div class="car__section">
     <div class="container car">

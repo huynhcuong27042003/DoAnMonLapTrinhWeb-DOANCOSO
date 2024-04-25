@@ -141,7 +141,7 @@ public partial class QuanLyThueXeMayTuLaiContext : DbContext
                 .HasConstraintName("FK__HoaDon__MaPhuong__73BA3083");
 
             entity.HasOne(d => d.YeuCauDatXe).WithMany(p => p.HoaDons)
-                .HasForeignKey(d => new { d.Email, d.BienSoXe })
+                .HasForeignKey(d => new { d.MaYeuCau})
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__HoaDon__75A278F5");
         });
@@ -279,10 +279,11 @@ public partial class QuanLyThueXeMayTuLaiContext : DbContext
 
         modelBuilder.Entity<YeuCauDatXe>(entity =>
         {
-            entity.HasKey(e => new { e.Email, e.BienSoXe }).HasName("PK__YeuCauDa__83A900AC0247BA4F");
+            entity.HasKey(e => e.MaYeuCau).HasName("PK__YeuCauDatXe__MaYeuCau");
 
             entity.ToTable("YeuCauDatXe");
 
+            entity.Property(e => e.MaYeuCau).HasColumnName("MaYeuCau"); // Đặt tên cho cột khóa chính MaYeuCau
             entity.Property(e => e.Email)
                 .HasMaxLength(50)
                 .IsUnicode(false);

@@ -4,6 +4,7 @@ using DoAnMonLapTrinhWeb_Nhom1.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoAnMonLapTrinhWeb_Nhom1.Migrations
 {
     [DbContext(typeof(QuanLyThueXeMayTuLaiContext))]
-    partial class QuanLyThueXeMayTuLaiContextModelSnapshot : ModelSnapshot
+    [Migration("20240424101035_V2")]
+    partial class V2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,10 +158,6 @@ namespace DoAnMonLapTrinhWeb_Nhom1.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MaiKhuyenMai"));
-
-                    b.Property<string>("HinhAnhKhuyenMai")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("NgayKhuyenMai")
                         .HasColumnType("datetime");

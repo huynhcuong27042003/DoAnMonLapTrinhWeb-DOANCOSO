@@ -29,6 +29,10 @@
 				<label class="control-label modal__lable">Số ngày thuê xe</label>
 				<input style="outline:none" readonly asp-for="datXe.SoNgayThue" class="form-control modal__input" />
 			</div>
+				<div class="form-group">
+					<label class="control-label modal__lable">Mã yêu cầu</label>
+					<input style="outline:none" readonly asp-for="datXe.MaYeuCau" class="form-control modal__input" />
+				</div>
 			<div class="form-group">
 				<label class="control-label modal__lable">Tổng tiền</label>
 				<p>@Model.TinhTong()</p>

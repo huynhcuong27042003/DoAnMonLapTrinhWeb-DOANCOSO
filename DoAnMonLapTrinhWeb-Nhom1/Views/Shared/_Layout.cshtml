@@ -17,6 +17,18 @@
 </head>
 <body>
     <div id="main">
+        @if (!string.IsNullOrEmpty(TempData["ErrorMessage"]?.ToString()))
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(TempData["SuccessMessage"]?.ToString()))
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+        }
         <div id="header">
             <div class="header-top__color"></div>
             <div class="container">
@@ -58,7 +70,7 @@
                 </div>
             </div>
         </div>
-        <div style="padding:32px 0" class="container">
+        <div class="container">
             @RenderBody()
         </div>
        
@@ -278,6 +290,17 @@
                 window.location.reload(); // Tải lại trang khi nó được tải từ bộ nhớ cache
             }
         };
+    </script>
+    <script>
+        // Hàm để ẩn thông báo sau một khoảng thời gian nhất định
+        function hideMessage() {
+            $('.alert').delay(5000).fadeOut(); // 5 giây
+        }
+
+        // Gọi hàm hideMessage sau khi trang được tải
+        $(document).ready(function () {
+            hideMessage();
+        });
     </script>
 
 </body>

@@ -13,6 +13,8 @@ public partial class HoaDon
 
     public int MaPhuongThuc { get; set; }
 
+    public int MaYeuCau {  get; set; }
+
     public string Email { get; set; } = null!;
 
     public string BienSoXe { get; set; } = null!;

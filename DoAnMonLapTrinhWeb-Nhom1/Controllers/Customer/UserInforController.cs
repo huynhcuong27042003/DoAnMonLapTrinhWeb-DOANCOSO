@@ -121,14 +121,14 @@ namespace DoAnMonLapTrinhWeb_Nhom1.Controllers.Customer
             // Kiểm tra mật khẩu cũ có đúng không
             if (!BCrypt.Net.BCrypt.Verify(oldPassword, user.MatKhau))
             {
-                ViewBag.ErrorMessage = "Mật khẩu cũ không đúng.";
+                TempData["ErrorMessage"] = "Mật khẩu cũ không đúng.";
                 return RedirectToAction("ChangePassword", "UserInfor", new { email = taikhoan.Email });
             }
 
             // Kiểm tra mật khẩu mới và mật khẩu xác nhận có khớp nhau không
             if (newPassword != confirmPassword)
             {
-                ViewBag.ErrorMessage = "Mật khẩu mới và mật khẩu xác nhận không khớp.";
+                TempData["ErrorMessage"] = "Mật khẩu mới và mật khẩu xác nhận không khớp.";
                 return RedirectToAction("ChangePassword", "UserInfor", new { email = taikhoan.Email });
             }
 

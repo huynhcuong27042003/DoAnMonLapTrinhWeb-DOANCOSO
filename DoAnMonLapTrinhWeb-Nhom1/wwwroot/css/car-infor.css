@@ -328,7 +328,7 @@
     border-radius: 15px;
     padding: 16px 16px;
     margin: 16px;
-    max-width:98%;
+    max-width: 78%;
 }
 
 .Userbike__item {
@@ -359,22 +359,20 @@
 
 .Userbike__btn {
     border-left: 1px solid #5c5a5a;
-    display: flex;
-    flex-wrap: wrap;
+    padding-left:32px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 .btn__bike {
-    width: 100%;
     background-color: #5fcf86;
-    padding: 5px 5px;
+    padding: 10px 10px;
     color: #fff;
     font-size: 14px;
     font-weight: 700;
     max-width: 100px;
     margin: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border-radius: 8px;
 }
 

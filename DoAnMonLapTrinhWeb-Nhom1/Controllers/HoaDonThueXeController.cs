@@ -40,6 +40,11 @@ namespace DoAnMonLapTrinhWeb_Nhom1.Controllers
 					{
 						PhuongThucs.Add(new SelectListItem { Value = item.MaPhuongThuc.ToString(), Text = item.TenPhuongThuc });
 					}
+                    List<SelectListItem> Xes = new List<SelectListItem>();
+                    foreach (var item in _context.Xes)
+					{
+						Xes.Add(new SelectListItem { Value = item.BienSoXe.ToString(), Text = item.TenXe });
+                    }	
 					ViewBag.PhuongThucs = PhuongThucs;
 					string username = User.Identity.Name;
 					var datxeList = await _context.YeuCauDatXes.Where(p => p.BienSoXeNavigation.Email == username && p.TrangThaiChapNhan == false).ToListAsync();
@@ -75,7 +80,8 @@ namespace DoAnMonLapTrinhWeb_Nhom1.Controllers
 				hoaDon.NgayLap = DateTime.Now;
 				hoaDon.MaPhuongThuc = model.HoaDon.MaPhuongThuc;
 				hoaDon.TongDonGia = model.Xe.GiaThue * model.datXe.SoNgayThue;
-				_context.HoaDons.Add(hoaDon);
+                hoaDon.MaYeuCau = model.datXe.MaYeuCau;
+                _context.HoaDons.Add(hoaDon);
 				await _context.SaveChangesAsync();
 				ViewBag.Message = "Thanh toán thành công";
 				return RedirectToAction("Index", "Home");

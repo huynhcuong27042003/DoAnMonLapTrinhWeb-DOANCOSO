@@ -35,7 +35,7 @@ namespace DoAnMonLapTrinhWeb_Nhom1.Controllers.Admin
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(KhuyenMai khuyenmai)
+        public async Task<IActionResult> Add(KhuyenMai khuyenmai, IFormFile HinhAnh)
         {
             var users = new TaiKhoan();
             if (User.Identity.IsAuthenticated)
@@ -57,6 +57,23 @@ namespace DoAnMonLapTrinhWeb_Nhom1.Controllers.Admin
                 }
             }
             return View();
+        }
+
+        public void DeleteImage(string imagePath)
+        {
+            if (System.IO.File.Exists(imagePath))
+            {
+                System.IO.File.Delete(imagePath);
+            }
+        }
+        private async Task<string> SaveImage(IFormFile image)
+        {
+            var savePath = Path.Combine("wwwroot/Images/promo", image.FileName); // Thay đổi đường dẫn theo cấu hình của bạn
+            using (var fileStream = new FileStream(savePath, FileMode.Create))
+            {
+                await image.CopyToAsync(fileStream);
+            }
+            return "/Images/promo/" + image.FileName; // Trả về đường dẫn tương đối
         }
         public async Task<IActionResult> Update(int makhuyenmai)
         {

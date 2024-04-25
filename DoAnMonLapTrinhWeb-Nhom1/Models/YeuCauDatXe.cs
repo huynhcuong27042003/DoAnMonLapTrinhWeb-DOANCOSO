@@ -5,6 +5,7 @@ namespace DoAnMonLapTrinhWeb_Nhom1.Models;
 
 public partial class YeuCauDatXe
 {
+    public int MaYeuCau {  get; set; }
     public string Email { get; set; } = null!;
 
     public string BienSoXe { get; set; } = null!;
