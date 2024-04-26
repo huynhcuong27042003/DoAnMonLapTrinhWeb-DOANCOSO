@@ -385,5 +385,29 @@ namespace DoAnMonLapTrinhWeb_Nhom1.Controllers.Customer
 				smtp.Send(message);
 			}
 		}
-	}
+        public async Task<IActionResult> PendingRequests()
+        {
+            var pendingRequests = await _context.YeuCauDatXes
+                .Where(p => p.TrangThaiChapNhan == false)
+                .ToListAsync();
+
+            return View(pendingRequests);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteRequest(int id)
+        {
+            var request = await _context.YeuCauDatXes.FindAsync(id);
+            if (request == null)
+            {
+                return NotFound();
+            }
+
+            _context.YeuCauDatXes.Remove(request);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(PendingRequests));
+        }
+    }
 }

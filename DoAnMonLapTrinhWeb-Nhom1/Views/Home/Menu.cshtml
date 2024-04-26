@@ -86,6 +86,11 @@
 					</ul>
 				</div>
 			</li>
+			<li class="header-nav-container-item">
+				<a class="nav__a" href="@Url.Action("PendingRequests", "CustomerBike")">Chuyến xe của tôi</a>
+				<span style="border-style: groove;" class="header-nav-container-item header-line"></span>
+			</li>
+
 		}
 		<li class="header__infor">
 			<p class="header__avatar">
@@ -124,14 +129,12 @@
 		<div class="modal__body">
 			<form class="form form-horizontal" asp-action="Login" asp-controller="Home" method="POST">
 				<div class="form-group">
-					<label asp-for="Register.Email" class="col-md-3 control-label modal__lable"></label>
 					<div class="col-md-9">
 						<input class="form-control modal__input" asp-for="Register.Email" placeholder="Nhập tên Email" autofocus required />
 						<span asp-validation-for="Register.Email" class="textdanger"></span>
 					</div>
 				</div>
 				<div class="form-group">
-					<label asp-for="Register.MatKhau" class="col-md-3 control-label modal__lable"></label>
 					<div class="col-md-9">
 						<input type="password" class="form-control modal__input" asp-for="Register.MatKhau" id="password" placeholder="Nhập mật khẩu" required />
 						<span asp-validation-for="Register.MatKhau" class="textdanger"></span>
@@ -155,7 +158,6 @@
 		<div class="modal__body">
 			<form class="form form-horizontal" asp-action="Register" asp-controller="Home" method="POST">
 				<div class="form-group">
-					<label asp-for="Register.Email" class="col-md-3 control-label modal__label"></label>
 					<div class="col-md-9">
 						<input class="form-control modal__input" asp-for="Register.Email"
 							   placeholder="Nhập Email" autofocus required />
@@ -163,7 +165,6 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label asp-for="Register.TenNguoiDung" class="col-md-3 control-label modal__lable"></label>
 					<div class="col-md-9">
 						<input class="form-control modal__input" asp-for="Register.TenNguoiDung"
 							   placeholder="Nhập họ và tên" required />
@@ -171,16 +172,14 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label asp-for="Register.MatKhau" class="col-md-3 control-label modal__lable"></label>
 					<div class="col-md-9">
-						<input type="password" class="form-control modal__input" asp-for="Register.MatKhau" id="password" placeholder="Nhập mật khẩu" required
+						<input type="password" class="form-control modal__input" asp-for="Register.MatKhau" id="password" placeholder="Mật khẩu" required
 							   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 							   title="Mật khẩu phải có ít nhất 8 ký tự, bao gồm ít nhất một chữ số, một chữ thường và một chữ hoa." />
 						<span asp-validation-for="Register.MatKhau" class="textdanger"></span>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-md-3 control-label">Nhập lại mật khẩu:</label>
 					<div class="col-md-9">
 						<input type="password" class="form-control modal__input" id="confirmPassword"
 							   placeholder="Nhập lại mật khẩu" required
@@ -191,7 +190,6 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label asp-for="Register.Sdt" class="col-md-3 control-label modal__lable"></label>
 					<div class="col-md-9">
 						<input class="form-control modal__input" asp-for="Register.Sdt"
 							   placeholder="Nhập số điện thoại" />
@@ -199,7 +197,6 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label asp-for="Register.DiaChi" class="col-md-3 control-label modal__lable"></label>
 					<div class="col-md-9">
 						<input class="form-control modal__input" asp-for="Register.DiaChi"
 							   placeholder="Nhập địa chỉ" />
@@ -207,14 +204,12 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label asp-for="Register.NgaySinh" class="col-md-3 control-label modal__lable"></label>
 					<div class="col-md-9">
 						<input class="form-control modal__input" asp-for="Register.NgaySinh" required />
 						<span asp-validation-for="Register.NgaySinh" class="textdanger"></span>
 					</div>
 				</div>
 				<div class="form-group">
-					<label asp-for="Register.Gplx" class="col-md-3 control-label modal__lable"></label>
 					<div class="col-md-9">
 						<input class="form-control modal__input" asp-for="Register.Gplx"
 							   placeholder="Nhập số giấy phép lái xe" required />

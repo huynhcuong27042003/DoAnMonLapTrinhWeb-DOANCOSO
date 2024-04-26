@@ -18,12 +18,17 @@ namespace DoAnMonLapTrinhWeb_Nhom1.Controllers.Admin
         }
         public async Task<IActionResult> Index()
         {
-            var taikhoan = await _context.TaiKhoans.ToListAsync();
+            var taikhoan = await _context.TaiKhoans
+                .Include(t => t.IdchucVuNavigation) // Include navigation property IdchucVuNavigation
+                .ToListAsync();
             return View(taikhoan);
         }
         public IActionResult Display(string Email)
         {
-            var taikhoan = _context.TaiKhoans.FirstOrDefault(x => x.Email == Email);
+            var taikhoan = _context.TaiKhoans
+                .Include(t => t.IdchucVuNavigation) // Include navigation property IdchucVuNavigation
+                .FirstOrDefault(x => x.Email == Email);
+
             if (taikhoan == null)
             {
                 return NotFound();

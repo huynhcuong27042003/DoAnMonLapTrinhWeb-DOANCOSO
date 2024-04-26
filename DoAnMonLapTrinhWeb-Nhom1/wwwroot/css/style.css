@@ -211,6 +211,7 @@ a{
 .header-nav .full-logo img{
     height: 110px;
     border-radius: 35px;
+    box-shadow: 0 -3px 12px rgba(0, 0, 0, .1), 0 9px 12px rgba(75, 75, 75, .1);
 }
 
 #header .header-nav-container{
@@ -867,7 +868,6 @@ a.order__check-link {
     padding: 16px;
     overflow: hidden;
     overflow-y: auto;
-    min-height: 300px;
     max-height: 500px;
 }
 
@@ -890,7 +890,7 @@ a.order__check-link {
 {
     display: block;
     position: absolute;
-    bottom: 80px;
+    bottom: 75px;
     right: 16px;
 }
 

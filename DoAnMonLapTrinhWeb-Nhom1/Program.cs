@@ -237,10 +237,14 @@ defaults: new { controller = "RentBike", action = "Index" });
 name: "kiem-tra-dat-xe",
 pattern: "kiem-tra-dat-xe",
 defaults: new { controller = "CustomerBike", action = "CheckOrder" });
+	endpoints.MapControllerRoute(
+name: "chi-tiet-yeu-cau",
+pattern: "chi-tiet-yeu-cau",
+defaults: new { controller = "CustomerBike", action = "PendingRequests" });
 
 
 
-    endpoints.MapControllerRoute(
+	endpoints.MapControllerRoute(
 name: "them-xe",
 pattern: "them-xe",
 defaults: new { controller = "CustomerBike", action = "Add" });
@@ -252,6 +256,7 @@ defaults: new { controller = "CustomerBike", action = "Update" });
 name: "chi-tiet",
 pattern: "chi-tiet",
 defaults: new { controller = "CustomerBike", action = "Display" });
+    
 
 
     endpoints.MapControllerRoute(
